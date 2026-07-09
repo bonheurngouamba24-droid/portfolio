@@ -1,0 +1,149 @@
+{
+  "profile": {
+    "full_name": "Gloire Bonheur",
+    "headline": "Ingénieur Génie Industriel en formation & Trader Quantitatif",
+    "bio_industrial": "Étudiant en 2ème année de classe préparatoire intégrée à l'ESTEM, futur ingénieur Génie Industriel. Spécialisé dans l'optimisation des flux, la maintenance prédictive et l'automatisme.",
+    "bio_finance": "Passionné de marchés financiers, je développe des scripts de backtesting et d'analyse quantitative pour explorer des stratégies de trading algorithmique basées sur le momentum et la gestion du risque.",
+    "location": "Casablanca, Maroc",
+    "email": "bonheurngouamba24@gmail.com",
+    "phone": "+212-6-45-67-50-92",
+    "linkedin_url": "",
+    "github_url": "https://github.com/bonheurngouamba24-droid",
+    "cv_url": ""
+  },
+
+  "education": [
+    {
+      "degree": "Cycle Préparatoire Intégré (2ème année)",
+      "institution": "ESTEM",
+      "specialization": "Sciences de l'ingénieur, logique mathématique, algorithmique et informatique",
+      "start_date": "2024-09-01",
+      "end_date": "2026-06-30",
+      "display_order": 1
+    },
+    {
+      "degree": "Baccalauréat Technologique en Maintenance Industrielle",
+      "institution": "Lycée technique",
+      "specialization": "Méthodes de maintenance, systèmes mécaniques et électriques, automatismes industriels",
+      "start_date": "2023-09-01",
+      "end_date": "2024-06-30",
+      "display_order": 2
+    }
+  ],
+
+  "experiences": [
+    {
+      "universe": "industrial",
+      "title": "Stagiaire en Optimisation SEO & Flux Digitaux",
+      "organization": "Maroc Organic",
+      "location": "Casablanca, Maroc",
+      "start_date": "2025-07-11",
+      "end_date": "2025-08-11",
+      "is_current": false,
+      "summary": "Optimisation de l'architecture d'acquisition e-commerce et des performances web.",
+      "bullet_points": [
+        "Réécriture sémantique et restructuration des bases de données produits",
+        "Réduction de 90% du poids des fichiers via conversion WebP (Canva)",
+        "Analyse de données & suivi de performance",
+        "Gestion d'équipe & pédagogie"
+      ],
+      "display_order": 1
+    },
+    {
+      "universe": "industrial",
+      "title": "Simulation de Direction Production & Logistique",
+      "organization": "Projet académique — en collaboration avec Atlas Bâtiment",
+      "location": "ESTEM",
+      "start_date": "2026-01-01",
+      "end_date": null,
+      "is_current": true,
+      "summary": "Pilotage simulé d'un département Génie Industriel.",
+      "bullet_points": [
+        "Pilotage de département (Génie Industriel)",
+        "Management & coordination d'équipe",
+        "Gestion des opérations",
+        "Communication professionnelle"
+      ],
+      "display_order": 2
+    }
+  ],
+
+  "projects": [
+    {
+      "universe": "industrial",
+      "slug": "maintenance-predictive-nasa-bearing",
+      "title": "Maintenance Prédictive par Analyse Vibratoire",
+      "subtitle": "Détection précoce d'anomalies de roulement — NASA Bearing Dataset",
+      "description": "Traitement de données vibratoires massives à haute fréquence (20 kHz) issues du NASA Bearing Dataset. Mise en place d'un seuil statistique à 2σ (loi normale) pour détecter précocement les anomalies de roulement avant la panne.",
+      "cover_image_url": "",
+      "tech_stack": ["Python", "Pandas", "NumPy", "Statistiques (loi normale, seuils 2σ)"],
+      "metrics": { "accuracy": "98%", "precision": "96%", "sensibilite": "99%", "frequence_echantillonnage": "20 kHz" },
+      "external_url": "",
+      "featured": true,
+      "display_order": 1
+    },
+    {
+      "universe": "industrial",
+      "slug": "parking-automatise",
+      "title": "Réalisation d'un Parking Automatisé",
+      "subtitle": "Projet d'études — Automatisme & systèmes intelligents",
+      "description": "Conception et automatisation d'un système de parking intelligent : capteurs, logique de commande et gestion automatisée des places disponibles.",
+      "cover_image_url": "",
+      "tech_stack": ["Automatisme industriel", "Conception système"],
+      "metrics": {},
+      "external_url": "",
+      "featured": false,
+      "display_order": 2
+    },
+    {
+      "universe": "industrial",
+      "slug": "optimisation-seo-ecommerce",
+      "title": "Optimisation SEO & Flux E-commerce",
+      "subtitle": "Stage — Maroc Organic",
+      "description": "Restructuration de l'architecture d'acquisition et des bases produits, réduction de 90% du poids des fichiers images pour maximiser la vitesse et l'UX du site.",
+      "cover_image_url": "",
+      "tech_stack": ["SEO technique", "WebP / Canva", "Analyse de données"],
+      "metrics": { "reduction_poids_fichiers": "90%" },
+      "external_url": "",
+      "featured": false,
+      "display_order": 3
+    },
+    {
+      "universe": "finance",
+      "slug": "backtesting-momentum-strategy",
+      "title": "Backtesting de Stratégies Momentum",
+      "subtitle": "Trading algorithmique & gestion des risques",
+      "description": "Développement de scripts d'analyse quantitative pour tester des stratégies basées sur des indicateurs de momentum, avec règles de gestion des risques intégrées.",
+      "cover_image_url": "",
+      "tech_stack": ["Python", "Indicateurs de momentum", "Risk management"],
+      "metrics": {},
+      "external_url": "",
+      "featured": true,
+      "display_order": 1
+    },
+    {
+      "universe": "finance",
+      "slug": "dashboard-marche",
+      "title": "Dashboard de Visualisation de Marché",
+      "subtitle": "Séries temporelles & aide à la décision",
+      "description": "Visualisation de flux de données financières et modélisation de séries temporelles pour appuyer la prise de décision en trading.",
+      "cover_image_url": "",
+      "tech_stack": ["Séries temporelles", "Data viz"],
+      "metrics": {},
+      "external_url": "",
+      "featured": false,
+      "display_order": 2
+    }
+  ],
+
+  "skills": [
+    { "universe": "industrial", "category": "Automatismes", "name": "Systèmes automatisés & maintenance industrielle", "proficiency": 4, "display_order": 1 },
+    { "universe": "industrial", "category": "Data", "name": "Logique algorithmique (Python)", "proficiency": 4, "display_order": 2 },
+    { "universe": "industrial", "category": "Digital", "name": "SEO technique & outils digitaux", "proficiency": 4, "display_order": 3 },
+    { "universe": "industrial", "category": "IA", "name": "Ingénierie de prompt & outils d'IA avancés", "proficiency": 4, "display_order": 4 },
+    { "universe": "finance", "category": "Quant", "name": "Backtesting de stratégies", "proficiency": 3, "display_order": 1 },
+    { "universe": "finance", "category": "Quant", "name": "Indicateurs de momentum", "proficiency": 3, "display_order": 2 },
+    { "universe": "finance", "category": "Risk", "name": "Gestion des risques", "proficiency": 3, "display_order": 3 },
+    { "universe": "finance", "category": "Data", "name": "Modélisation de séries temporelles", "proficiency": 3, "display_order": 4 }
+  ]
+}
