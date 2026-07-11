@@ -62,20 +62,6 @@ export interface Skill {
   display_order: number;
 }
 
-// Typage minimal pour createClient<Database>() — suffisant pour l'autocomplétion
-// des .from("table").select() sur les tables utilisées par le site.
-// Le client Supabase (v2) exige Row + Insert + Update sur chaque table pour
-// résoudre correctement ses génériques ; sans Insert/Update, TypeScript
-// retombe sur `never` pour le type de retour (site en lecture seule,
-// donc Insert/Update ne sont jamais réellement utilisés côté client).
-export interface Database {
-  public: {
-    Tables: {
-      profile: { Row: Profile; Insert: Partial<Profile>; Update: Partial<Profile> };
-      education: { Row: Education; Insert: Partial<Education>; Update: Partial<Education> };
-      experiences: { Row: Experience; Insert: Partial<Experience>; Update: Partial<Experience> };
-      projects: { Row: Project; Insert: Partial<Project>; Update: Partial<Project> };
-      skills: { Row: Skill; Insert: Partial<Skill>; Update: Partial<Skill> };
-    };
-  };
-}
+// Note : pas de type Database ici. Le client Supabase (lib/supabase.ts) n'utilise
+// plus de generic <Database> — chaque fonction de lib/queries.ts type son retour
+// explicitement avec les interfaces ci-dessus via un cast (as Profile, as Project[], etc.).
