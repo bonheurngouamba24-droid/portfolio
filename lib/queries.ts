@@ -2,9 +2,9 @@ import { supabase } from "./supabase";
 import type { Universe, Profile, Education, Experience, Project, Skill } from "./types";
 
 export async function getProfile(): Promise<Profile | null> {
-  const { data, error } = await supabase.from("profile").select("*").single();
+  const { data, error } = await supabase.from("profile").select("*").maybeSingle();
   if (error) return null;
-  return data as Profile;
+  return data as Profile | null;
 }
 
 export async function getEducation(): Promise<Education[]> {
@@ -56,9 +56,9 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     .from("projects")
     .select("*")
     .eq("slug", slug)
-    .single();
+    .maybeSingle();
   if (error) return null;
-  return data as Project;
+  return data as Project | null;
 }
 
 export async function getSkills(universe?: Universe): Promise<Skill[]> {

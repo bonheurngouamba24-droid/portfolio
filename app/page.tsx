@@ -1,5 +1,12 @@
 import DualUniverseHero, { type UniverseData } from "@/components/DualUniverseHero";
-import { getProfile, getFeaturedProjects, metricsToStats } from "@/lib/queries";
+import {
+  getProfile,
+  getFeaturedProjects,
+  metricsToStats,
+  getExperiences,
+  getSkills,
+  getEducation,
+} from "@/lib/queries";
 
 export const revalidate = 60; // ISR : relit Supabase toutes les 60s max, pas de rebuild manuel
 
@@ -25,7 +32,16 @@ const FALLBACK: Record<"industrial" | "finance", UniverseData> = {
 };
 
 export default async function Home() {
-  const [profile, industrialProject, financeProject] = await Promise.all([
+  const [
+    profile,
+    industrialProject,
+    financeProject,
+    industrialExperiences,
+    financeExperiences,
+    industrialSkills,
+    financeSkills,
+    education,
+  ] = await Promise.all([
     getProfile().catch(() => null),
     getFeaturedProjects("industrial", 1)
       .then((rows) => rows[0] ?? null)
@@ -33,6 +49,11 @@ export default async function Home() {
     getFeaturedProjects("finance", 1)
       .then((rows) => rows[0] ?? null)
       .catch(() => null),
+    getExperiences("industrial").catch(() => []),
+    getExperiences("finance").catch(() => []),
+    getSkills("industrial").catch(() => []),
+    getSkills("finance").catch(() => []),
+    getEducation().catch(() => []),
   ]);
 
   const industrial: UniverseData = {
@@ -44,5 +65,13 @@ export default async function Home() {
     stats: metricsToStats(financeProject?.metrics, FALLBACK.finance.stats),
   };
 
-  return <DualUniverseHero industrial={industrial} finance={finance} />;
+  return (
+    <DualUniverseHero
+      industrial={industrial}
+      finance={finance}
+      experiences={{ industrial: industrialExperiences, finance: financeExperiences }}
+      skills={{ industrial: industrialSkills, finance: financeSkills }}
+      education={education}
+    />
+  );
 }

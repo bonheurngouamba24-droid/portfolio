@@ -4,6 +4,10 @@ import Link from "next/link";
 import { getProjectBySlug, getAllProjectSlugs } from "@/lib/queries";
 
 export const revalidate = 3600; // ISR : régénère la page 1x/heure max
+// Si un projet a été ajouté dans Supabase après le build, sa page se génère
+// quand même à la demande au lieu de renvoyer 404 (comportement par défaut,
+// explicité ici pour éviter toute ambiguïté).
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const slugs = await getAllProjectSlugs();
@@ -13,9 +17,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
   if (!project) return {};
   return {
     title: `${project.title} — Gloire Bonheur`,
@@ -26,9 +31,10 @@ export async function generateMetadata({
 export default async function ProjectDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
   if (!project) notFound();
 
   const isFinance = project.universe === "finance";
