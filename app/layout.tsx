@@ -1,3 +1,4 @@
+import "./globals.css";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
