@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Experience, Skill, Education } from "@/lib/types";
+import type { Experience, Skill, Education, Certification } from "@/lib/types";
 
 export type UniverseKey = "industrial" | "finance";
 
@@ -16,6 +16,7 @@ export interface DualUniverseHeroProps {
   experiences: { industrial: Experience[]; finance: Experience[] };
   skills: { industrial: Skill[]; finance: Skill[] };
   education: Education[];
+  certifications: { industrial: Certification[]; finance: Certification[] };
 }
 
 // Habillage éditorial (titre accrocheur, libellés) : choix de copywriting fixes.
@@ -44,6 +45,7 @@ export default function DualUniverseHero({
   experiences,
   skills,
   education,
+  certifications,
 }: DualUniverseHeroProps) {
   const [universe, setUniverse] = useState<UniverseKey>("industrial");
   const isFinance = universe === "finance";
@@ -51,6 +53,8 @@ export default function DualUniverseHero({
   const data = universe === "finance" ? finance : industrial;
   const currentExperiences = universe === "finance" ? experiences.finance : experiences.industrial;
   const currentSkills = universe === "finance" ? skills.finance : skills.industrial;
+  const currentCertifications =
+    universe === "finance" ? certifications.finance : certifications.industrial;
 
   return (
     <>
@@ -133,6 +137,7 @@ export default function DualUniverseHero({
       {/* Sections synchronisées avec le même commutateur univers */}
       <ExperienceSection experiences={currentExperiences} isFinance={isFinance} />
       <SkillsSection skills={currentSkills} isFinance={isFinance} />
+      <CertificationsSection certifications={currentCertifications} isFinance={isFinance} />
       <EducationSection education={education} />
       <TimelineSection />
     </>
@@ -242,7 +247,57 @@ function SkillsSection({ skills, isFinance }: { skills: Skill[]; isFinance: bool
   );
 }
 
-/** Formation — commune aux deux univers, ne change pas avec le commutateur */
+/** Certifications — filtrées par univers. Aucun fichier stocké : chaque carte pointe vers un lien externe. */
+function CertificationsSection({
+  certifications,
+  isFinance,
+}: {
+  certifications: Certification[];
+  isFinance: boolean;
+}) {
+  const accent = isFinance ? "text-ticker" : "text-signal";
+  const btnColor = isFinance ? "bg-ticker text-graphite" : "bg-signal text-graphite";
+
+  if (certifications.length === 0) return null;
+
+  return (
+    <section className="border-t border-steel bg-graphite px-6 py-20 text-white">
+      <div className="mx-auto max-w-3xl">
+        <p className={`font-mono text-xs uppercase tracking-widest ${accent}`}>Reconnu par</p>
+        <h2 className="mt-2 font-display text-2xl sm:text-3xl">Certifications</h2>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {certifications.map((cert) => (
+            <div key={cert.id} className="rounded-md border border-steel bg-panel p-5">
+              <h3 className="font-display text-lg leading-snug">{cert.name}</h3>
+              <p className="mt-1 text-sm text-white/60">
+                {cert.organization}
+                {cert.issue_date &&
+                  ` — ${new Date(cert.issue_date).toLocaleDateString("fr-FR", {
+                    month: "long",
+                    year: "numeric",
+                  })}`}
+              </p>
+              {cert.description && (
+                <p className="mt-2 text-sm text-white/70">{cert.description}</p>
+              )}
+              <a
+                href={cert.certificate_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`mt-4 inline-block rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-wide ${btnColor}`}
+              >
+                Voir le certificat
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 function EducationSection({ education }: { education: Education[] }) {
   if (education.length === 0) return null;
 

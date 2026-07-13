@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import type { Universe, Profile, Education, Experience, Project, Skill } from "./types";
+import type { Universe, Profile, Education, Experience, Project, Skill, Certification } from "./types";
 
 export async function getProfile(): Promise<Profile | null> {
   const { data, error } = await supabase.from("profile").select("*").maybeSingle();
@@ -67,6 +67,14 @@ export async function getSkills(universe?: Universe): Promise<Skill[]> {
   const { data, error } = await query;
   if (error) throw error;
   return (data ?? []) as Skill[];
+}
+
+export async function getCertifications(universe?: Universe): Promise<Certification[]> {
+  let query = supabase.from("certifications").select("*").order("display_order");
+  if (universe) query = query.eq("universe", universe);
+  const { data, error } = await query;
+  if (error) throw error;
+  return (data ?? []) as Certification[];
 }
 
 /** Transforme un objet metrics ({accuracy: "98%", ...}) en paires label/valeur affichables. */

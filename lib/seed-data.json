@@ -71,6 +71,19 @@
   "projects": [
     {
       "universe": "industrial",
+      "slug": "classification-fruits-ia",
+      "title": "Classification Intelligente de Fruits par IA",
+      "subtitle": "Réseau de neurones — Keras & Scikit-Learn",
+      "description": "Création d'un modèle de classification d'images de fruits basé sur un réseau de neurones, développé et entraîné avec Keras et Scikit-Learn dans l'environnement Spyder.",
+      "cover_image_url": "",
+      "tech_stack": ["Python", "Keras", "Scikit-Learn", "Spyder"],
+      "metrics": {},
+      "external_url": "",
+      "featured": false,
+      "display_order": 4
+    },
+    {
+      "universe": "industrial",
       "slug": "maintenance-predictive-nasa-bearing",
       "title": "Maintenance Prédictive par Analyse Vibratoire",
       "subtitle": "Détection précoce d'anomalies de roulement — NASA Bearing Dataset",

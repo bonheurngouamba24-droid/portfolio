@@ -6,6 +6,7 @@ import {
   getExperiences,
   getSkills,
   getEducation,
+  getCertifications,
 } from "@/lib/queries";
 
 export const revalidate = 60; // ISR : relit Supabase toutes les 60s max, pas de rebuild manuel
@@ -41,6 +42,8 @@ export default async function Home() {
     industrialSkills,
     financeSkills,
     education,
+    industrialCertifications,
+    financeCertifications,
   ] = await Promise.all([
     getProfile().catch(() => null),
     getFeaturedProjects("industrial", 1)
@@ -54,6 +57,8 @@ export default async function Home() {
     getSkills("industrial").catch(() => []),
     getSkills("finance").catch(() => []),
     getEducation().catch(() => []),
+    getCertifications("industrial").catch(() => []),
+    getCertifications("finance").catch(() => []),
   ]);
 
   const industrial: UniverseData = {
@@ -72,6 +77,7 @@ export default async function Home() {
       experiences={{ industrial: industrialExperiences, finance: financeExperiences }}
       skills={{ industrial: industrialSkills, finance: financeSkills }}
       education={education}
+      certifications={{ industrial: industrialCertifications, finance: financeCertifications }}
     />
   );
 }
