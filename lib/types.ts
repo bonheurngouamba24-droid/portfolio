@@ -62,6 +62,17 @@ export interface Skill {
   display_order: number;
 }
 
+export interface Certification {
+  id: string;
+  universe: Universe;
+  name: string;
+  organization: string;
+  issue_date: string | null;
+  description: string | null;
+  certificate_url: string;
+  display_order: number;
+}
+
 // Note : pas de type Database ici. Le client Supabase (lib/supabase.ts) n'utilise
 // plus de generic <Database> — chaque fonction de lib/queries.ts type son retour
 // explicitement avec les interfaces ci-dessus via un cast (as Profile, as Project[], etc.).
