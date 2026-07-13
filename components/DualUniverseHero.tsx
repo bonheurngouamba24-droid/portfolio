@@ -134,6 +134,7 @@ export default function DualUniverseHero({
       <ExperienceSection experiences={currentExperiences} isFinance={isFinance} />
       <SkillsSection skills={currentSkills} isFinance={isFinance} />
       <EducationSection education={education} />
+      <TimelineSection />
     </>
   );
 }
@@ -267,6 +268,51 @@ function EducationSection({ education }: { education: Education[] }) {
                   {ed.end_date ? ` – ${new Date(ed.end_date).getFullYear()}` : ""}
                 </span>
               )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Frise chronologique — trajectoire de carrière, commune aux deux univers */
+const CAREER_MILESTONES: { year: string; label: string; isGoal?: boolean }[] = [
+  { year: "2023", label: "Baccalauréat Sciences et Technologies — Maintenance Industrielle" },
+  { year: "2024", label: "Entrée en cycle préparatoire intégré" },
+  { year: "2026", label: "Fin du cycle préparatoire intégré" },
+  { year: "2026", label: "Entrée en cycle ingénieur Génie Industriel" },
+  {
+    year: "Objectif",
+    label:
+      "Ingénieur industriel spécialisé en production, logistique, automatisation et systèmes intelligents",
+    isGoal: true,
+  },
+];
+
+function TimelineSection() {
+  return (
+    <section className="border-t border-steel bg-graphite px-6 py-20 text-white">
+      <div className="mx-auto max-w-3xl">
+        <p className="font-mono text-xs uppercase tracking-widest text-white/40">Trajectoire</p>
+        <h2 className="mt-2 font-display text-2xl sm:text-3xl">Ligne du temps</h2>
+
+        <div className="mt-10 border-l border-steel pl-8">
+          {CAREER_MILESTONES.map((m, i) => (
+            <div key={i} className="relative pb-10 last:pb-0">
+              <span
+                className={`absolute -left-[calc(2rem+5px)] top-1 h-2.5 w-2.5 rounded-full ${
+                  m.isGoal ? "bg-white" : "bg-steel"
+                }`}
+              />
+              <p className="font-mono text-xs uppercase tracking-widest text-white/40">{m.year}</p>
+              <p
+                className={`mt-1 ${
+                  m.isGoal ? "font-display text-lg text-white" : "text-sm text-white/70"
+                }`}
+              >
+                {m.label}
+              </p>
             </div>
           ))}
         </div>
